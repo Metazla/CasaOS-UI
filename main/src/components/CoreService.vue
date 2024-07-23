@@ -214,6 +214,12 @@ export default {
 			this.$delete(this.noticesData, type)
 		},
 		patchTransform(eventJson) {
+			if(eventJson){
+				// disabled
+				// CasaImg : We can format the disk inside the container
+				console.warn('patchTransform unsuported', eventJson)
+				return;
+			}
 			// only show which is disk from local-storage
 			let notShow = eventJson.name.split(':')[1] !== 'disk'
 			if (notShow) {

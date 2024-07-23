@@ -57,7 +57,7 @@ export default {
 	name: 'network',
 	icon: "network-outline",
 	title: "Network Status",
-	initShow: true,
+	initShow: false,//not working in container for now so disabling it
 	components: {
 		VueApexCharts: () => import("vue-apexcharts")
 	},

@@ -132,7 +132,7 @@ export default {
 		}
 		if (sessionStorage.getItem('fromWelcome')) {
 			this.$messageBus('global_newvisit')
-			this.rssConfirm()
+			//this.rssConfirm() // CasaIMG disabled
 			// one-off consumption
 			sessionStorage.removeItem('fromWelcome')
 		}
@@ -156,12 +156,13 @@ export default {
 				const barData = {
 					lang: this.getLangFromBrowser(),
 					search_engine: "https://duckduckgo.com/?q=",
-					search_switch: true,
+					search_switch: false,
 					recommend_switch: true,
 					shortcuts_switch: true,
 					widgets_switch: true,
 					existing_apps_switch: true,
-					rss_switch: this.barData.rss_switch,
+					//rss_switch: this.barData.rss_switch,
+					rss_switch: true,
 				}
 				// save
 				const saveRes = await this.$api.users.setCustomStorage("system", barData)

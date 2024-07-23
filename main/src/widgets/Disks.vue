@@ -9,9 +9,11 @@
 					<div class="widget-title is-flex-grow-1">
 						{{ $t('Storage') }}
 					</div>
+					<!--
+					CasaImg : we can format disk in the container so we disable it for now
 					<div class="widget-icon-button is-flex-shrink-0" @click="showDiskManagement">
 						<b-icon icon="settings-outline" pack="casa" size="is-20"></b-icon>
-					</div>
+					</div>-->
 				</div>
 				<!-- Header End -->
 				<div class="columns is-mobile is-multiline pt-2 ">
@@ -79,7 +81,7 @@ export default {
 	name: 'disks',
 	icon: "storage-outline",
 	title: "Storage Status",
-	initShow: true,
+	initShow: false, //not working in container for now so disabling it
 	mixins: [mixin],
 
 	data() {

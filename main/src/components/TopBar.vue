@@ -142,6 +142,8 @@
 					<!-- Language End -->
 
 					<!-- WebUI Port Start -->
+					<!-- Disabled CasaIMG : in the container changing the webui port will lead to issue -->
+					<!--
 					<div
 						class="is-flex is-align-items-center mb-1 _is-large _box hover-effect _is-radius pr-2 mr-4 ml-4"
 					>
@@ -157,7 +159,7 @@
 								>{{ $t("Change") }}
 							</b-button>
 						</div>
-					</div>
+					</div> -->
 					<!-- WebUI Port End -->
 
 					<!-- Background Start -->
@@ -246,6 +248,8 @@
 					<!-- Recommended modules Switch End  -->
 
 					<!-- Automount USB Drive Start  -->
+					<!-- Disabled CasaIMG : in the container automounting USB will lead to issue -->
+					<!--
 					<div
 						class="is-flex is-align-items-center mb-1 _is-large _box hover-effect _is-radius pr-2 mr-4 ml-4"
 					>
@@ -276,6 +280,7 @@
 							</b-field>
 						</div>
 					</div>
+					-->
 					<!-- Automount USB Drive End  -->
 
 					<!-- Update Start -->
@@ -301,6 +306,8 @@
 					</div>
 					<!-- Update End -->
 					<!-- Restart or Shutdown Start -->
+					<!-- Disabled CasaIMG : in the container restarting or shutting down will lead to issue -->
+					<!-- 
 					<div
 						class="is-flex is-align-content-center is-justify-content-center _footer mt-4 pl-3 pr-3 pt-2 pb-2"
 					>
@@ -324,6 +331,7 @@
 							{{ $t(shutdown) }}
 						</div>
 					</div>
+					-->
 					<!-- Restart or Shutdown End -->
 				</b-dropdown-item>
 			</b-dropdown>
