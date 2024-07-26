@@ -66,8 +66,8 @@
 				<app-section-title-tip
 					id="appTitle2"
 					class="is-flex-grow-1 has-text-sub-04"
-					label="To be rebuilt."
-					title="Legacy app (To be rebuilt)."
+					label=""
+					title="External Apps"
 				>
 				</app-section-title-tip>
 			</div>
