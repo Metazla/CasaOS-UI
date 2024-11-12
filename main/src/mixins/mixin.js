@@ -3,6 +3,7 @@ import has from 'lodash/has'
 import union from 'lodash/union'
 import copy from 'clipboard-copy'
 import dayjs from 'dayjs'
+import { renderSize } from './file_utils'
 
 const typeMap = {
 	"image-x-generic": ['png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'svg', 'tiff'],
@@ -54,20 +55,8 @@ export const mixin = {
 		this.typeMap = typeMap;
 	},
 
-	methods: {
-		/**
-		 * @description: Format size output
-		 * @param {int} bytes size value
-		 * @return {String}
-		 */
-		renderSize(bytes) {
-			const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
-			if (bytes == 0) return '0 Bytes'
-			const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
-			if (i === 0) return `${bytes} ${sizes[i]}`
-			return `${parseFloat((bytes / (1024 ** i)).toFixed(2))} ${sizes[i]}`
-		},
-
+	methods: {		
+		renderSize,
 
 		/**
 		 * @description: Get Default Lang from browser
@@ -173,10 +162,6 @@ export const mixin = {
 			this.$refs.dropDown?.toggle()
 			this.downloadFile(this.item)
 		},
-		playVideo(item, player) {
-			let url = player + this.getFileUrl(item)
-			window.open(url, '_self');
-		},
 
 		// Get File Download URL
 		getFileUrl(items) {
@@ -237,22 +222,6 @@ export const mixin = {
 				message: this.$t('Copied to clipboard'),
 				type: 'is-success'
 			})
-		},
-		/**
-		 * @description: Download File
-		 * @param {Object,Object} event item
-		 * @return {void}
-		 */
-		clickItem(event, item) {
-			let bounced = event.target.getAttribute('class').includes('mdi-dots')
-			if (bounced) {
-				return false
-			}
-			if (item.is_dir) {
-				this.$emit('gotoFolder', item.path)
-			} else {
-				this.$emit('showDetailModal', item)
-			}
 		},
 		/**
 		 * @description: Open Context Menu
@@ -410,48 +379,11 @@ export const mixin = {
 
 
 	filters: {
-		/**
-		 * @description: Format size output
-		 * @param {int} value size value
-		 * @return {String}
-		 */
-		renderBps(value) {
-			if (null == value || value == '' || value == 0) {
-				return "0 bps";
-			}
-			const unitArr = ["bps", "Kbps", "Mbps", "Gbps", "TB", "PB", "EB", "ZB", "YB"];
-			let index = 0,
-				srcsize = parseFloat(value);
-			index = Math.floor(Math.log(srcsize) / Math.log(1024));
-			let size = srcsize / Math.pow(1024, index);
-			size = size.toFixed(2);
-			return size + unitArr[index];
-		},
-
-
-		/**
-		 * @description: Format size output
-		 * @param {int} value size value
-		 * @return {String}
-		 */
-		renderSize(bytes) {
-			const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-			if (bytes === 0) return '0 Bytes'
-			const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
-			if (i === 0) return `${bytes} ${sizes[i]}`
-			return `${parseFloat((bytes / (1024 ** i)).toFixed(2))} ${sizes[i]}`
-		},
-
+		renderSize,
 
 		toFahrenheit: function (value) {
 			return (32 + value * 1.8).toFixed(1);
 		},
-
-
-		formatNum(number) {
-			return new Intl.NumberFormat().format(number)
-		},
-
 
 		getProgressType(per) {
 			if (per >= 0 && per < 80) {
@@ -460,17 +392,6 @@ export const mixin = {
 				return "is-warning"
 			} else {
 				return "is-danger"
-			}
-		},
-
-
-		getTextType(per) {
-			if (per >= 0 && per < 80) {
-				return "has-text-success"
-			} else if (per >= 80 && per < 90) {
-				return "has-text-warning"
-			} else {
-				return "has-text-danger"
 			}
 		},
 
